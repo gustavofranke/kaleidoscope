@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: a7db4e41d617f70abee2a5e8301a8db49641feb14fb48bdd6f080ce0e8dbbc01
+-- hash: 872e29af0350c2370991dd95c15545817e4c1b7df3e54c892babaed102a960e2
 
 name:           kaleidoscope
 version:        0.1.0.0
@@ -27,13 +27,19 @@ source-repository head
 
 library
   exposed-modules:
-      Lib
+      Lexer
+      Parser
+      Syntax
   other-modules:
       Paths_kaleidoscope
   hs-source-dirs:
       src
+  ghc-options: -Wall
   build-depends:
       base >=4.7 && <5
+    , haskeline
+    , mtl >=2.1.3
+    , parsec >=3.1
   default-language: Haskell2010
 
 executable kaleidoscope-exe
@@ -42,10 +48,13 @@ executable kaleidoscope-exe
       Paths_kaleidoscope
   hs-source-dirs:
       app
-  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  ghc-options: -Wall -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base >=4.7 && <5
+    , haskeline
     , kaleidoscope
+    , mtl >=2.1.3
+    , parsec >=3.1
   default-language: Haskell2010
 
 test-suite kaleidoscope-test
@@ -55,8 +64,11 @@ test-suite kaleidoscope-test
       Paths_kaleidoscope
   hs-source-dirs:
       test
-  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  ghc-options: -Wall -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base >=4.7 && <5
+    , haskeline
     , kaleidoscope
+    , mtl >=2.1.3
+    , parsec >=3.1
   default-language: Haskell2010
